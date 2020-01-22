@@ -111,12 +111,12 @@ end)
     function ProcCraftingSequence(itemToCraft)
         if CurrentAction == "" then
             TriggerServerEvent('suku:PlayerHasRequiredItems', itemToCraft)
-            CurrentAction = "MANUFACTURING"
         end
     end
 
     RegisterNetEvent('suku:BeginCraftingSchematic')
     AddEventHandler('suku:BeginCraftingSchematic', function(craftable, ingredients)
+        CurrentAction = "MANUFACTURING"
         isCrafting = true
 
         startAnim("mp_arresting", "a_uncuff", craftable.manufactureTime)
