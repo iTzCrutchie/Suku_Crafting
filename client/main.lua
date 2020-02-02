@@ -29,6 +29,7 @@ end)
 local Schemtics = {}
 local isCrafting = false
 local CurrentAction = ""
+local IsInCraftMenu            = false
 
 Citizen.CreateThread(function()
     while true do
@@ -63,6 +64,48 @@ Citizen.CreateThread(function()
     end
 end)
 
+if Config.UseNUI then
+    RegisterNUICallback('CloseMenu', function()
+        SetNuiFocus(false, false)
+        IsInCraftMenu = false
+    end)
+
+    function OpenCraftingMenu()
+        IsInCraftMenu = false
+        Schemtics = {}
+        if Config.RequiresBlueprint then
+            ESX.TriggerServerCallback('suku:FetchSchematicsInInventory', function(_list)
+                if _list[1] ~= nil then
+                    Schemtics = _list
+                end
+            end)
+        else
+            for k, v in pairs(Config.Blueprints) do
+                table.insert(Schemtics, {name = v.name, label = v.label, itemToCraft = v.itemToCraft, ingredients = v.ingredients})
+            end
+        end
+
+        Citizen.Wait(500)
+
+        if not IsInCraftMenu then
+            IsInCraftMenu = true
+            SetNuiFocus(true, true)
+
+            SendNUIMessage({
+                show = true,
+                schematics = Schemtics
+            })
+        end
+    end
+
+    RegisterNUICallback('CraftSchematic', function(data, cb)
+        SetNuiFocus(false, false)
+        print('item: '..Schemtics[data.id+1].itemToCraft)
+        if CurrentAction == "" then
+            TriggerServerEvent('suku:PlayerHasRequiredItems', Schemtics[data.id+1].itemToCraft)
+        end
+    end)
+else
     function OpenCraftingMenu()
         local elements = {}
         Schemtics = {}
@@ -88,7 +131,7 @@ end)
         ESX.UI.Menu.CloseAll()
 
         ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle_menu', {
-            title = 'Crafting Shit',
+            title = 'Crafting Menu',
             align = 'center',
             elements = elements
         }, function(data, menu)
@@ -107,6 +150,7 @@ end)
             menu.close()
         end)
     end
+end
 
     function ProcCraftingSequence(itemToCraft)
         if CurrentAction == "" then
@@ -126,6 +170,7 @@ end)
         TriggerServerEvent('suku:FinishManufacturing', craftable, ingredients)
         isCrafting = false
         CurrentAction = ""
+        OpenCraftingMenu()
     end)
 
     function ManufactureTimer(recipeitem, message)

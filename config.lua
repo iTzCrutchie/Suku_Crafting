@@ -12,9 +12,11 @@ Config.CraftingLocation     = {x = 727.74, y = -1067.11, z = 27.31}
 Config.InteriorCraftingLoc  = {x = -154.66, y = -587.99, z = 166.0}
 
 Config.RequiresBlueprint    = true
+Config.UseNUI               = true
 
-Config.Blueprints           = { { name = "wrench", label = "Phone Blueprint", itemToCraft = "phone", manufactureTime = 5000},
-                                { name = "phone", label = "Noss Blueprint", itemToCraft = "nitrocannister", manufactureTime = 5000}}
+Config.Blueprints           = { { name = "wrench", label = "Phone Blueprint", itemToCraft = "phone", manufactureTime = 5000, img = "https://i.imgur.com/PIfiF1a.png"},
+                                { name = "phone", label = "Noss Blueprint", itemToCraft = "nitrocannister", manufactureTime = 5000, img = "https://i.imgur.com/3mUcq7D.png"},
+                                { name = "water", label = "Bread Blueprint", itemToCraft = "bread", manufactureTime = 5000, img = "https://i.imgur.com/cwmbjRY.png"}}
 
 Config.Recipes              = { {name = "phone", label = "Phone", ingredients = {
                                                                         { name = "electronic", amount = 5},
@@ -23,4 +25,17 @@ Config.Recipes              = { {name = "phone", label = "Phone", ingredients = 
                                 {name = "nitrocannister", label = "Nitro Cannister", ingredients = {
                                                                         { name = "phone", amount = 5},
                                                                         { name = "plastic", amount = 2},
-                                                                        { name = "electronic", amount = 10}}, manufactureTime = 5000}}
+                                                                        { name = "electronic", amount = 10}}, manufactureTime = 5000},
+                                                                    
+                                {name = "bread", label = "Bread", ingredients = {
+                                                                            { name = "water", amount = 5}}, manufactureTime = 5000}}
+
+                                                                            --<div class="card-body" style="background-image: url(\'img/' + data.schematics[i].name + '.png\'>
+
+
+                                                                            --<img src="\img/`+ data.schematics[i].name +`.png\" class="card-img" alt="...">
+
+                                                                            --style="background-image: url(\img/`+ data.schematics[i].name +`.png\)"
+
+
+                                                                        

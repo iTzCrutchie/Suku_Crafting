@@ -13,3 +13,15 @@ client_script {
 	'config.lua',
 	'client/main.lua'
 }
+
+ui_page "html/ui.html"
+
+files {
+    "html/ui.html",
+    "html/ui.css",
+    "html/ui.js",
+    "html/img/blueprint.jpg",
+    "html/img/wrench.png",
+    "html/img/phone.png",
+    "html/img/water.png"
+}

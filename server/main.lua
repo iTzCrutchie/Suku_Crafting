@@ -8,7 +8,12 @@ ESX.RegisterServerCallback('suku:FetchSchematicsInInventory', function(source, c
     
     for k, v in pairs(Config.Blueprints) do
         if xPlayer.getInventoryItem(v.name).count >= 1 then
-            table.insert(SchematicList, {name = v.name, label = v.label, itemToCraft = v.itemToCraft})
+            for i = 1, #Config.Recipes, 1 do
+                if Config.Recipes[i].name == v.itemToCraft then
+                    table.insert(SchematicList, {name = v.name, label = v.label, itemToCraft = v.itemToCraft, ingredients = Config.Recipes[i].ingredients})
+                end
+            end
+            
         end 
     end
 

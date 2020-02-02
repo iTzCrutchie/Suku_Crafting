@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+    background-color: transparent;
+}
+
+.container-fluid {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    left: 7.5vw;
+    top: 20vw;
+    transition: right 1.0s;
+}
+
+.container {
+    display: block;
+    top: 3vw;
+}
+
+.unselectable {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select:none;
+    user-select:none;
+    -o-user-select:none;
+}
+
+.card-mt-5-bg-dark {
+    height: 950px;
+    max-height: 950px;
+    width: 1210px;
+    max-width: 1210px;
+    background-image: url('img/blueprint.jpg');
+    background-size: cover;
+    background-color: darkred;
+}
+
+.btn-btn-light-btn-lg-btn-block {
+    height: 50px;
+    width: 210px;
+    /*margin-top: 90px;*/
+    display: block;
+    background-color: darkred;
+    border-color: black;
+}
+
+.card-body {
+    width: 150x;
+    height: 250px;
+    display: block;
+    
+    /*border-color: slategray;*/
+    border-color: snow;
+}
+
+.card-title {
+    
+    text-transform: uppercase;
+    color: aliceblue;
+    text-align: center;
+    top: 50px
+}
+
+.card-ingredients {
+    color: aliceblue;
+    top: 20px
+}
