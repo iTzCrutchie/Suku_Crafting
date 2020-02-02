@@ -14,28 +14,28 @@ Config.InteriorCraftingLoc  = {x = -154.66, y = -587.99, z = 166.0}
 Config.RequiresBlueprint    = true
 Config.UseNUI               = true
 
-Config.Blueprints           = { { name = "wrench", label = "Phone Blueprint", itemToCraft = "phone", manufactureTime = 5000, img = "https://i.imgur.com/PIfiF1a.png"},
-                                { name = "phone", label = "Noss Blueprint", itemToCraft = "nitrocannister", manufactureTime = 5000, img = "https://i.imgur.com/3mUcq7D.png"},
-                                { name = "water", label = "Bread Blueprint", itemToCraft = "bread", manufactureTime = 5000, img = "https://i.imgur.com/cwmbjRY.png"}}
+Config.Blueprints           = { { name = "wrench", label = "Phone Blueprint", itemToCraft = "phone", manufactureTime = 5000},
+                                { name = "phone", label = "Noss Blueprint", itemToCraft = "nitrocannister", manufactureTime = 5000},
+                                { name = "plastic", label = "SMG Blueprint", itemToCraft = "weapon_microsmg", manufactureTime = 5000},
+                                { name = "iron", label = "SMG Ammo Blueprint", itemToCraft = "smgammo", manufactureTime = 5000},
+                                { name = "water", label = "Bread Blueprint", itemToCraft = "bread", manufactureTime = 5000}}
 
-Config.Recipes              = { {name = "phone", label = "Phone", ingredients = {
+Config.Recipes              = { {name = "phone", label = "Phone", type = "ITEM", ingredients = {
                                                                         { name = "electronic", amount = 5},
                                                                         { name = "plastic", amount = 2}}, manufactureTime = 5000},
 
-                                {name = "nitrocannister", label = "Nitro Cannister", ingredients = {
+                                {name = "nitrocannister", label = "Nitro Cannister", type = "ITEM", ingredients = {
                                                                         { name = "phone", amount = 5},
                                                                         { name = "plastic", amount = 2},
                                                                         { name = "electronic", amount = 10}}, manufactureTime = 5000},
+
+                                {name = "weapon_microsmg", label = "Micro SMG", type = "WEAPON", ammo = 30, ingredients = {
+                                                                            { name = "phone", amount = 5},
+                                                                            { name = "plastic", amount = 2},
+                                                                            { name = "electronic", amount = 10}}, manufactureTime = 5000},
+
+                                {name = "smgammo", label = "SMG Ammo", type = "AMMO", w_type = "weapon_microsmg", ammo = 30, ingredients = {
+                                                                                { name = "iron", amount = 5}}, manufactureTime = 5000},
                                                                     
-                                {name = "bread", label = "Bread", ingredients = {
+                                {name = "bread", label = "Bread", type = "ITEM", ingredients = {
                                                                             { name = "water", amount = 5}}, manufactureTime = 5000}}
-
-                                                                            --<div class="card-body" style="background-image: url(\'img/' + data.schematics[i].name + '.png\'>
-
-
-                                                                            --<img src="\img/`+ data.schematics[i].name +`.png\" class="card-img" alt="...">
-
-                                                                            --style="background-image: url(\img/`+ data.schematics[i].name +`.png\)"
-
-
-                                                                        

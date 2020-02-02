@@ -81,7 +81,13 @@ if Config.UseNUI then
             end)
         else
             for k, v in pairs(Config.Blueprints) do
-                table.insert(Schemtics, {name = v.name, label = v.label, itemToCraft = v.itemToCraft, ingredients = v.ingredients})
+                if v.type == "ITEM" then
+                    table.insert(Schemtics, {name = v.name, label = v.label, itemToCraft = v.itemToCraft})
+                elseif v.type == "WEAPON" then
+                    table.insert(Schemtics, {name = v.name, label = v.label, itemToCraft = v.itemToCraft, type = v.type})
+                elseif v.type == "AMMO" then
+                    table.insert(Schemtics, {name = v.name, label = v.label, itemToCraft = v.itemToCraft, type = v.type, w_type = v.w_type, ammo = v.ammo})
+                end
             end
         end
 
@@ -117,7 +123,13 @@ else
             end)
         else
             for k, v in pairs(Config.Blueprints) do
-                table.insert(Schemtics, {name = v.name, label = v.label, itemToCraft = v.itemToCraft})
+                if v.type == "ITEM" then
+                    table.insert(Schemtics, {name = v.name, label = v.label, itemToCraft = v.itemToCraft})
+                elseif v.type == "WEAPON" then
+                    table.insert(Schemtics, {name = v.name, label = v.label, itemToCraft = v.itemToCraft, type = v.type})
+                elseif v.type == "AMMO" then
+                    table.insert(Schemtics, {name = v.name, label = v.label, itemToCraft = v.itemToCraft, type = v.type, w_type = v.w_type, ammo = v.ammo})
+                end
             end
         end
 
@@ -171,6 +183,11 @@ end
         isCrafting = false
         CurrentAction = ""
         OpenCraftingMenu()
+    end)
+
+    RegisterNetEvent("suku:AddCrafterAmmoToWeapon")
+    AddEventHandler("suku:AddCrafterAmmoToWeapon", function(hash, amount)
+        AddAmmoToPed(GetPlayerPed(-1), hash, amount)
     end)
 
     function ManufactureTimer(recipeitem, message)

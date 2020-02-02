@@ -62,5 +62,11 @@ end
 
 function AwardRecipeItem(craftable)
     local xPlayer = ESX.GetPlayerFromId(source)
-    xPlayer.addInventoryItem(craftable.name, 1)
+    if craftable.type == "ITEM" then
+        xPlayer.addInventoryItem(craftable.name, 1)
+    elseif craftable.type == "WEAPON" then
+        xPlayer.addWeapon(craftable.name, craftable.ammo)
+    elseif craftable.type == "AMMO" then
+        TriggerClientEvent("suku:AddCrafterAmmoToWeapon", source, craftable.w_type, craftable.ammo)
+    end
 end
